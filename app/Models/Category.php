@@ -6,18 +6,31 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Represents a category for organizing products.
+ */
 class Category extends Model
 {
-    /** @use HasFactory<\Database\Factories\CategoryFactory> */
-    use HasFactory, SoftDeletes;  // Corectat de la SoftDelete la SoftDeletes
+    use HasFactory, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var list<string>
+     * @var array<int, string>
      */
     protected $fillable = [
         'name',
         'description',
     ];
+
+    /**
+     * Get the products associated with the category.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function products(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
 }
+
