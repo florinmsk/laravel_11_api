@@ -37,6 +37,15 @@ class Product extends Model
     ];
 
     /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'deleted_at',
+    ];
+
+    /**
      * Get the category that the product belongs to.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
